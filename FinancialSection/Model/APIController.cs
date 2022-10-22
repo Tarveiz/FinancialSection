@@ -18,7 +18,7 @@ namespace FinancialSection.Model
 
 
         /// <summary>
-        /// Ресурс: CurrencyLayer.com
+        /// API-Ресурс: CurrencyLayer.com
         /// </summary>
         /// <param name="Action"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace FinancialSection.Model
             }
         }
         /// <summary>
-        /// Ресурс: FixerIO.com
+        /// API-Ресурс: FixerIO.com
         /// </summary>
         /// <param name="Action"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace FinancialSection.Model
             }
         }
         /// <summary>
-        /// Ресурс: rb.ru
+        /// API-Ресурс: rb.ru
         /// </summary>
         /// <param name="Action"></param>
         /// <returns></returns>
