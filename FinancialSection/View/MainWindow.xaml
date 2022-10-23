@@ -7,11 +7,20 @@
         mc:Ignorable="d"
         Title="Калькулятор валюты" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="ToManyCurrencyResult" SelectionMode="Multiple" Margin="288,102,161,66" SelectionChanged="ToManyCurrencyResult_SelectionChanged">
-            <!--<ListBoxItem>Example1</ListBoxItem>-->
-            <!--<ListBoxItem>Example2</ListBoxItem>-->
+        <ListBox x:Name="ToManyCurrencyResult" SelectionMode="Multiple" Margin="310,25,140,143" SelectionChanged="ToManyCurrencyResult_SelectionChanged">
+            <CheckBox Name="Check">
+                <StackPanel>
+                    <ListBoxItem Content="str"></ListBoxItem>
+                </StackPanel>
+            </CheckBox>
+            <CheckBox Name="Check2">
+                <StackPanel>
+                    <ListBoxItem Content="Example2"></ListBoxItem>
+                    <!--"{Binding Source={StaticResource loc}, Path=str}"-->
+                </StackPanel>
+            </CheckBox>
         </ListBox> 
         <TextBox x:Name="FromCurrencyValue" HorizontalAlignment="Left" Margin="40,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149" Height="46"/>
-        <ComboBox x:Name="CheckComboBox" HorizontalAlignment="Left" Margin="40,47,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="FromCurrency" HorizontalAlignment="Left" Margin="40,47,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

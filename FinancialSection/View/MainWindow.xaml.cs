@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FinancialSection.Presenter;
 using System.Collections.Generic;
+using System.ComponentModel;
 //using System.Windows.Forms;
 
 namespace FinancialSection
@@ -23,38 +24,64 @@ namespace FinancialSection
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _example;
+        public string _exampleString { get; set; }
+        public int _exampleInt { get; set; }
+        public bool _exampleBool { get; set; }
+
+
+        List<string> list = new List<string>();
         public MainWindow()
         {
             //Binding + моделька-класс Handler
-            
+
             InitializeComponent();
             DataHandler data = new DataHandler();
-            data.Handler();
-            List<string> list = new List<string>();
-            list.Add("str");
+
+            //list.Add("str");
+            //ToManyCurrencyResult.ItemsSource = list;
+
             //ToManyCurrencyResult.Items.Add(list);
 
-            foreach (string l in list)
-            {
-                //ListBoxItem item = new ListBoxItem();
-                //item.Name = l;
-                ToManyCurrencyResult.Items.Add(l);
-            }
+            //foreach (string l in list)
+            //{
+            //    //ListBoxItem item = new ListBoxItem();
+            //    //item.Name = l;
+            //    ToManyCurrencyResult.Items.Add(l);
+            //}
 
 
             Binding bind = new Binding();
-            bind.ElementName = _example;
 
-            ToManyCurrencyResult.SetBinding(ToManyCurrencyResult.Items.ToString(), bind);
+            bind.Source = list;
 
+            //ToManyCurrencyResult.SetBinding(bind, _example);
+
+
+            //bind.ElementName = _example;
+
+            //ToManyCurrencyResult.SetBinding(, bind);
+
+
+            //Binding bind2 = BindingOperations.SetBinding(ToManyCurrencyResult,TopProperty ,bind);
+
+
+
+            
+
+            
         }
+        
 
 
         private void ToManyCurrencyResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //ToManyCurrencyResult.
         }
+
+    }
+
+    
+            
     }
 
     //public partial class CheckComboBox : ComboBox
@@ -131,4 +158,4 @@ namespace FinancialSection
     //    public event EventHandler CheckStateChanged;
 
     //}
-}
+//}
