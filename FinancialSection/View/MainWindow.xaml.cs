@@ -27,7 +27,6 @@ namespace FinancialSection
         //public bool _exampleBool { get; set; }
 
 
-        List<string> list = new List<string>();
         public MainWindow()
         {
             //Binding + моделька-класс Handler

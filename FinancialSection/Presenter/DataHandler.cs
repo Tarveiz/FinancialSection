@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using FinancialSection.Model;
 using RestSharp;
 using System.Text.Json;
+using System.Timers;
+using System.Threading;
 
 namespace FinancialSection.Presenter
 {
@@ -13,30 +15,32 @@ namespace FinancialSection.Presenter
     {
         // Использовать не заранее подготовленную модельку данных, а сам класс, в котором реализована логика, - как модель данных
         private string _str { get; set; }
-        
-        public List<string> CurrencyResult {
-            get
-            {
-                return CurrencyResult;
-            }
-            set
-            {
-                CurrencyResult.Add(_str);
-            } 
-        }
+        private System.Timers.Timer _timer = null;
+        public List<string> CurrencyResult { get; set; } = new List<string>();
 
-        public void SetList()
-        {
-            _str = "str";
-        }
 
         APIController controller = new APIController();
 
         //Конструктор должен принимать параметр - настройки пользователя (валюты, драг металлы или еще чего)
         public DataHandler()
         {
-            //CurrencyResult.Add("str");
-            SetList();
+            
+
+            
+            void SetTimer()
+            {
+                _timer = new System.Timers.Timer(2000);
+                _timer.Elapsed += OnTimedEvent;
+                _timer.AutoReset = true;
+                _timer.Enabled = true;
+            }
+            void OnTimedEvent(Object source, ElapsedEventArgs e)
+            {
+                CurrencyResult.Add("str");
+            }
+
+            CurrencyResult.Add("str");
+            SetTimer();
             //json:
             //Content - само значение json-файла (null, если пустой вариант)
             //ErrorException (System.Exception) - null в удачном исходе событий и в пустой форме
