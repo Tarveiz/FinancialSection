@@ -4,21 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinancialSection"
+        xmlns:presenter="clr-namespace:FinancialSection.Presenter"
         mc:Ignorable="d"
-        Title="Калькулятор валюты" Height="450" Width="800">
+        Title="Калькулятор валюты" Height="450" Width="800"
+        DataContext="{DynamicResource present}">
+    <Window.Resources>
+        <presenter:DataHandler x:Key="present"/>
+        <DataTemplate DataType="sys:String" x:Key="string.Template">
+            <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        <ListBox x:Name="ToManyCurrencyResult" SelectionMode="Multiple" Margin="310,25,140,143" SelectionChanged="ToManyCurrencyResult_SelectionChanged">
-            <CheckBox Name="Check">
-                <StackPanel>
-                    <ListBoxItem Content="str"></ListBoxItem>
-                </StackPanel>
-            </CheckBox>
-            <CheckBox Name="Check2">
-                <StackPanel>
-                    <ListBoxItem Content="Example2"></ListBoxItem>
-                    <!--"{Binding Source={StaticResource loc}, Path=str}"-->
-                </StackPanel>
-            </CheckBox>
+        <ListBox x:Name="ToManyCurrencyResult" SelectionMode="Multiple" Margin="310,25,140,143" 
+                 SelectionChanged="ToManyCurrencyResult_SelectionChanged" 
+                 ItemsSource="{Binding CurrencyResult}"
+                 ItemTemplate="{DynamicResource string.Template}">
         </ListBox> 
         <TextBox x:Name="FromCurrencyValue" HorizontalAlignment="Left" Margin="40,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149" Height="46"/>
         <ComboBox x:Name="FromCurrency" HorizontalAlignment="Left" Margin="40,47,0,0" VerticalAlignment="Top" Width="120"/>

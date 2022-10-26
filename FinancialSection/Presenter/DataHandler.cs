@@ -5,20 +5,38 @@ using System.Text;
 using System.Threading.Tasks;
 using FinancialSection.Model;
 using RestSharp;
+using System.Text.Json;
 
 namespace FinancialSection.Presenter
 {
     internal class DataHandler
     {
         // Использовать не заранее подготовленную модельку данных, а сам класс, в котором реализована логика, - как модель данных
-        public readonly string _exam;
+        private string _str { get; set; }
+        
+        public List<string> CurrencyResult {
+            get
+            {
+                return CurrencyResult;
+            }
+            set
+            {
+                CurrencyResult.Add(_str);
+            } 
+        }
 
+        public void SetList()
+        {
+            _str = "str";
+        }
 
         APIController controller = new APIController();
 
         //Конструктор должен принимать параметр - настройки пользователя (валюты, драг металлы или еще чего)
         public DataHandler()
         {
+            //CurrencyResult.Add("str");
+            SetList();
             //json:
             //Content - само значение json-файла (null, если пустой вариант)
             //ErrorException (System.Exception) - null в удачном исходе событий и в пустой форме
@@ -42,7 +60,7 @@ namespace FinancialSection.Presenter
             //var readTask = request.ResponseWriter == null ? ReadResponse() : ReadAndConvertResponse();
             var response = GetData();
             
-
+            //if(json){парсинг json} else {парсинг xml}
 
 
             

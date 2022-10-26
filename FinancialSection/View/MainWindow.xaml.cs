@@ -13,9 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FinancialSection.Presenter;
-using System.Collections.Generic;
 using System.ComponentModel;
-//using System.Windows.Forms;
 
 namespace FinancialSection
 {
@@ -24,18 +22,18 @@ namespace FinancialSection
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string _exampleString { get; set; }
-        public int _exampleInt { get; set; }
-        public bool _exampleBool { get; set; }
+        //public string _exampleString { get; set; }
+        //public int _exampleInt { get; set; }
+        //public bool _exampleBool { get; set; }
 
 
         List<string> list = new List<string>();
         public MainWindow()
         {
             //Binding + моделька-класс Handler
-
-            InitializeComponent();
             DataHandler data = new DataHandler();
+            InitializeComponent();
+            
 
             //list.Add("str");
             //ToManyCurrencyResult.ItemsSource = list;
@@ -49,10 +47,6 @@ namespace FinancialSection
             //    ToManyCurrencyResult.Items.Add(l);
             //}
 
-
-            Binding bind = new Binding();
-
-            bind.Source = list;
 
             //ToManyCurrencyResult.SetBinding(bind, _example);
 
