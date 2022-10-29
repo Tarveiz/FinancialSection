@@ -8,17 +8,21 @@ using RestSharp;
 using System.Text.Json;
 using System.Timers;
 using System.Threading;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace FinancialSection.Presenter
 {
-    internal class DataHandler
+    internal class DataHandler : INotifyCollectionChanged
     {
         // Использовать не заранее подготовленную модельку данных, а сам класс, в котором реализована логика, - как модель данных
         private string _str { get; set; }
         public List<string> CurrencyResult { get; set; } = new List<string>();
-
+        public ObservableCollection<string> Curr { get; } = new();
 
         APIController controller = new APIController();
+
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
         //Конструктор должен принимать параметр - настройки пользователя (валюты, драг металлы или еще чего)
         public DataHandler()
