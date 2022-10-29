@@ -11,7 +11,8 @@
     <Window.Resources>
         <presenter:DataHandler x:Key="present"/>
         <DataTemplate DataType="sys:String" x:Key="string.Template">
-            <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+            <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                      Content="{Binding Source=ToManyCurrencyResult, Path=ItemsSource}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

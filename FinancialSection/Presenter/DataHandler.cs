@@ -15,7 +15,6 @@ namespace FinancialSection.Presenter
     {
         // Использовать не заранее подготовленную модельку данных, а сам класс, в котором реализована логика, - как модель данных
         private string _str { get; set; }
-        private System.Timers.Timer _timer = null;
         public List<string> CurrencyResult { get; set; } = new List<string>();
 
 
@@ -24,23 +23,11 @@ namespace FinancialSection.Presenter
         //Конструктор должен принимать параметр - настройки пользователя (валюты, драг металлы или еще чего)
         public DataHandler()
         {
-            
+            //настройки с формы!!!
 
             
-            void SetTimer()
-            {
-                _timer = new System.Timers.Timer(2000);
-                _timer.Elapsed += OnTimedEvent;
-                _timer.AutoReset = true;
-                _timer.Enabled = true;
-            }
-            void OnTimedEvent(Object source, ElapsedEventArgs e)
-            {
-                CurrencyResult.Add("str");
-            }
 
             CurrencyResult.Add("str");
-            SetTimer();
             //json:
             //Content - само значение json-файла (null, если пустой вариант)
             //ErrorException (System.Exception) - null в удачном исходе событий и в пустой форме
@@ -62,34 +49,34 @@ namespace FinancialSection.Presenter
 
 
             //var readTask = request.ResponseWriter == null ? ReadResponse() : ReadAndConvertResponse();
-            var response = GetData();
-            
+
+
             //if(json){парсинг json} else {парсинг xml}
 
 
-            
 
 
 
 
+            var responseTest = controller.RussiaBank(ActionsAPI.CURRENCY_VALUE);
 
 
 
-
+            //var response = GetData();
         }
         private RestResponse GetData()
         {
-            var response = controller.CurrencyLayer(ActionsAPI.PRECIOUS_METALS);
+            var response = controller.CurrencyLayer(ActionsAPI.PRECIOUS_METALS); //json
             
             if (response.ErrorException != null && (response.StatusCode != 0 && response.StatusCode != System.Net.HttpStatusCode.OK))
             {
-                response = controller.FixerIO(ActionsAPI.PRECIOUS_METALS);
+                response = controller.FixerIO(ActionsAPI.PRECIOUS_METALS); //json
                 if (response.ErrorException != null && (response.StatusCode != 0 && response.StatusCode != System.Net.HttpStatusCode.OK))
                 {
-                    response = controller.RussiaBank(ActionsAPI.PRECIOUS_METALS);
+                    response = controller.RussiaBank(ActionsAPI.PRECIOUS_METALS); //xml
                     if (response.ErrorException != null && (response.StatusCode != 0 && response.StatusCode != System.Net.HttpStatusCode.OK))
                     {
-                        return response;
+                        return response; //Подумать над выводом
                     }
                 }
             }
